@@ -25,30 +25,11 @@ public class App {
 
             while ((element1 = reader.read()) != -1) {
                 char character1 = (char) element1;
-                int element2 = reader.read();
-
-                String a;
-                if (element2 != -1) {
-                    char character2 = (char) element2;
-                    a = Character.toString(character1) + Character.toString(character2);
-                } else {
-                    a = Character.toString(character1);
-                }
-                ////
-                if (hashMap.containsKey(a)) {
-                    char value = hashMap.get(a);
-                    linkedList.add(value);
-                    count++;
-
-                } else {
-                    for (char c : a.toCharArray()) {
-                        linkedList.add(c);
-                        count++;
-                    }
-                }
+                linkedList.add(character1);
+                count++;
             }
             reader.close();
-            System.out.println(count);
+            System.out.println(linkedList.size());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,7 +37,7 @@ public class App {
         for (Character character : linkedList) {
             System.out.print(character);
         }
-        System.out.println("\n");
+         System.out.println("\n");
     AddHash(hashMap, linkedList);
 
     }
@@ -75,23 +56,32 @@ public class App {
                 char value = hash.get(str);
                 end.addLast(value);
                 i++;
-                // if(i>=linkedList.size()){
-                //     begin.addLast(linkedList.getLast());
+                // if(i==linkedList.size()-2){
+                //     begin.addLast(linkedList.get(i+1));
                 // }
 
             } else {
                 begin.addLast(a);
             }
-
+            if(i==linkedList.size()-2){
+                    begin.addLast(linkedList.get(i+1));
+                }
+            
         }
 
-        System.out.println("\n");
+         System.out.println("\n");
         begin.addAll(end);
         for (Character character : begin) {
-            System.out.print(character);
-        }
+                System.out.print(character);
+            }
+            System.out.println("\n");
         if(!allSame(begin)){
             AddHash(hash, begin);
+        }else{
+            for (Character character : begin) {
+                System.out.print(character);
+            }
+
         }
         return begin;
     }
