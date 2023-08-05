@@ -21,12 +21,10 @@ public class App {
         try {
             FileReader reader = new FileReader("testes\\testecurto.txt");
             int element1;
-            int count = 0;
 
             while ((element1 = reader.read()) != -1) {
                 char character1 = (char) element1;
                 linkedList.add(character1);
-                count++;
             }
             reader.close();
             System.out.println(linkedList.size());
