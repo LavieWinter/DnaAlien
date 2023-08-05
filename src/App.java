@@ -1,6 +1,7 @@
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.ListIterator;
 import java.util.HashMap;
 
 public class App {
@@ -52,69 +53,58 @@ public class App {
             e.printStackTrace();
         }
 
-        // mostra quantos há na fila
         for (Character character : linkedList) {
             System.out.print(character);
         }
         System.out.println("\n");
-        AddHash(hashMap, linkedList);
+    AddHash(hashMap, linkedList);
 
     }
 
-    public static void AddHash(HashMap<String, Character> hash, LinkedList<Character> linkedList) {
-        boolean allSame = false;
+    public static LinkedList<Character> AddHash(HashMap<String, Character> hash, LinkedList<Character> linkedList) {
+        LinkedList<Character> begin = new LinkedList<>();
+        LinkedList<Character> end = new LinkedList<>();
 
+        for (int i = 0; i < linkedList.size()-1;i++) {
+            char a = linkedList.get(i);
+            char b = linkedList.get(i + 1);
 
-            for (int i = 0; i < linkedList.size(); i += 2) {
-                for (int j = i+1; j<linkedList.size(); j+=2) {
-                    char a = linkedList.get(i);
-                    char b = linkedList.get(j);
+            String str = Character.toString(b) + Character.toString(a);
 
-                    String str = Character.toString(a) + Character.toString(b);
+            if (hash.containsKey(str)) {
+                char value = hash.get(str);
+                end.addLast(value);
+                i++;
+                // if(i>=linkedList.size()){
+                //     begin.addLast(linkedList.getLast());
+                // }
 
-                    if (hash.containsKey(str)) {
-                        char value = hash.get(str);
-                        linkedList.addLast(value);
-                        linkedList.remove(i);
-                        linkedList.remove(i); // Remove i novamente para atualizar o índice corretamente
-                        allSame = checkAllSame(linkedList);
-                    } else {
-                        for (char c : str.toCharArray()) {
-                            linkedList.addLast(c);
-                        }
-                        linkedList.remove(i);
-                        linkedList.remove(i); // Remove i novamente para atualizar o índice corretamente
-                        allSame = checkAllSame(linkedList);
-
-                    }
-                    
-                }
-                
-
+            } else {
+                begin.addLast(a);
             }
-
-        
-            allSame = checkAllSame(linkedList);
-            if (allSame) {
-                for (Character character : linkedList) {
-                    System.out.print(character);
-                }
-            }
-            for (Character character : linkedList) {
-                    System.out.print(character);
-                }
 
         }
-    
-    public static boolean checkAllSame(LinkedList<Character> list) {
-        if (list.isEmpty()) {
+
+        System.out.println("\n");
+        begin.addAll(end);
+        for (Character character : begin) {
+            System.out.print(character);
+        }
+        if(!allSame(begin)){
+            AddHash(hash, begin);
+        }
+        return begin;
+    }
+
+    public static boolean allSame(LinkedList<Character> list) {
+        char first = list.getFirst();
+        ListIterator<Character> iterator = list.listIterator(1);
+        if (list.getFirst() != list.getLast()) {
             return false;
         }
-        
-        char firstChar = list.get(0);
-        
-        for (char c : list) {
-            if (c != firstChar) {
+
+        while (iterator.hasNext()) {
+            if (!iterator.next().equals(first)) {
                 return false;
             }
         }
