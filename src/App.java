@@ -8,7 +8,6 @@ public class App {
 
     public static void main(String[] args) {
 
-        //StringBuilder concatenated = new StringBuilder();
         HashMap<String, Character> hashMap = new HashMap<>();
         LinkedList<Character> linkedList = new LinkedList<>();
 
@@ -20,11 +19,10 @@ public class App {
         hashMap.put("ND", 'A');
 
 
-
-
         try{
-            FileReader reader = new FileReader("testes\\testecurto.txt");
+            FileReader reader = new FileReader("testes\\caso0010.txt");
             int element1;
+            int count=0;
 
             while ((element1 = reader.read()) != -1) {
                 char character1 = (char) element1;
@@ -33,41 +31,37 @@ public class App {
                 String a;
                 if(element2 != -1){
                     char character2 = (char) element2;
-                    //concatenated.append(character1).append(character2);
                     a = Character.toString(character1)+ Character.toString(character2);
-                    System.out.println(a.toString());
                 }
                 else
                 {
                     a = Character.toString(character1);
-                    //concatenated.append(character1);
                 }
 
-            
-                //String str = concatenated.toString();
-                //System.out.println(str);
                 if(hashMap.containsKey(a)){
                     char value = hashMap.get(a);
-                    System.out.println(value);
                     linkedList.add(value);
-                    System.out.println(linkedList.toString());
+                    count++;
+
                 }
                 else
                 {
                     for(char c : a.toCharArray()){
                         linkedList.add(c);
+                        count++;
                     }
                 }
-                //linkedList.add(character);
                 
             }
             reader.close();
+            System.out.println(count);
         }
         catch(IOException e){
             e.printStackTrace();
         }
-        /*for (Character character : linkedList) {
+        for (Character character : linkedList) {
             System.out.print(character);
-        }*/
+        }
+
     }
 }
