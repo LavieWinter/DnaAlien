@@ -69,6 +69,17 @@ public class App {
 
          System.out.println("\n");
         begin.addAll(end);
+        ListIterator<Character> iterator = begin.listIterator();
+        int lineNumber = 1;
+        while (iterator.hasNext()) {
+            char c = iterator.next();
+            if (c == '\n' || c == '\r') {
+                iterator.remove(); // Remove a quebra de linha
+                System.out.println("Quebra de linha removida da linha " + lineNumber);
+                break; // Se já encontrou e removeu uma quebra de linha, não precisa continuar procurando
+            }
+            lineNumber++;
+        }
         for (Character character : begin) {
                 System.out.print(character);
             }
