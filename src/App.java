@@ -32,9 +32,9 @@ public class App {
             e.printStackTrace();
         }
 
-        for (Character character : linkedList) {
+         for (Character character : linkedList) {
             System.out.print(character);
-        }
+         }
          System.out.println("\n");
     AddHash(hashMap, linkedList);
 
@@ -54,9 +54,9 @@ public class App {
                 char value = hash.get(str);
                 end.addLast(value);
                 i++;
-                // if(i==linkedList.size()-2){
-                //     begin.addLast(linkedList.get(i+1));
-                // }
+                if(i==linkedList.size()-2){
+                    begin.addLast(linkedList.get(i+1));
+                }
 
             } else {
                 begin.addLast(a);
@@ -67,7 +67,7 @@ public class App {
             
         }
 
-         System.out.println("\n");
+        System.out.println("\n");
         begin.addAll(end);
         ListIterator<Character> iterator = begin.listIterator();
         int lineNumber = 1;
