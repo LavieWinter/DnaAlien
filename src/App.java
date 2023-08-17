@@ -32,9 +32,9 @@ public class App {
             e.printStackTrace();
         }
 
-         for (Character character : linkedList) {
+        for (Character character : linkedList) {
             System.out.print(character);
-         }
+        }
          System.out.println("\n");
     AddHash(hashMap, linkedList);
 
@@ -43,8 +43,9 @@ public class App {
     public static LinkedList<Character> AddHash(HashMap<String, Character> hash, LinkedList<Character> linkedList) {
         LinkedList<Character> begin = new LinkedList<>();
         LinkedList<Character> end = new LinkedList<>();
+        int aux = 1;
 
-        for (int i = 0; i < linkedList.size()-1;i++) {
+        for (int i = aux - 1; i < linkedList.size()-1;i++) {
             char a = linkedList.get(i);
             char b = linkedList.get(i + 1);
 
@@ -53,6 +54,7 @@ public class App {
             if (hash.containsKey(str)) {
                 char value = hash.get(str);
                 end.addLast(value);
+                aux = i;
                 i++;
                 if(i==linkedList.size()-2){
                     begin.addLast(linkedList.get(i+1));
@@ -67,7 +69,7 @@ public class App {
             
         }
 
-        System.out.println("\n");
+        // System.out.println("\n");
         begin.addAll(end);
         ListIterator<Character> iterator = begin.listIterator();
         int lineNumber = 1;
@@ -80,10 +82,10 @@ public class App {
             }
             lineNumber++;
         }
-        for (Character character : begin) {
-                System.out.print(character);
-            }
-            System.out.println("\n");
+        // for (Character character : begin) {
+        //         System.out.print(character);
+        //     }
+        //  System.out.println("\n");
         if(!allSame(begin)){
             AddHash(hash, begin);
         }else{
