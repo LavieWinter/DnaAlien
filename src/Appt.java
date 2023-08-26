@@ -1,10 +1,13 @@
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.time.Instant;
+import java.time.Duration;
 
 public class Appt {
 
     public static void main(String[] args) {
+        Instant start = Instant.now();
 
         HashMap<String, Character> hashMap = new HashMap<>();
         MyLinkedList list = new MyLinkedList();
@@ -37,9 +40,8 @@ public class Appt {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        System.out.println("\n");
-
+        Instant end = Instant.now();
+        Duration timeElapsed = Duration.between(start, end);
+        System.out.println("Tempo de execução: " + timeElapsed.toMillis() + " milissegundos");
     }
 }
