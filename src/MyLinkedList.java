@@ -62,17 +62,20 @@ public class MyLinkedList {
 			return null;
 
 		Nodo aux = null;
-		if (nodo.ant == null && nodo.prox.prox != null) {
+		Nodo aux2 = nodo.prox.prox;
+		if (nodo.ant == null && aux2 != null) {
 			aux = nodo.prox.prox;
-			nodo.prox.prox.ant = nodo.ant;
-			nodo.prox.prox = nodo.prox.ant = nodo.prox = null;
+
+			aux2.ant = nodo.ant;
+			aux2 = nodo.prox.ant = nodo.prox = null;
 			inicio = aux;
 			nElementos -= 2;
-		} else if (nodo.ant != null && nodo.prox.prox != null) {
+		} else if (nodo.ant != null && aux2 != null) {
 			aux = nodo.ant;
-			nodo.ant.prox = nodo.prox.prox;
-			nodo.prox.prox.ant = nodo.ant;
-			nodo.ant = nodo.prox.prox = nodo.prox.ant = nodo.prox = null;
+
+			nodo.ant.prox = aux2;
+			aux2.ant = nodo.ant;
+			nodo.ant = aux2 = nodo.prox.ant = nodo.prox = null;
 			nElementos -= 2;
 		}
 
@@ -91,7 +94,7 @@ public class MyLinkedList {
 		Nodo aux = inicio;
 		int count = 0;
 		while (aux != null) {
-			System.out.print(aux.valor);
+			System.out.print("Mutação final: " + aux.valor);
 			aux = aux.prox;
 			count++;
 		}

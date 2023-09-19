@@ -28,14 +28,13 @@ public class Appt {
                 if(character1 != '\n') list.add(character1);
             }
             reader.close();
-            System.out.println(list.size());
+            System.out.println("\n");
+            System.out.println("Tamanho inicial da lista: " + list.size());
             //list.print();
             list.mutacao(hashMap);
-            System.out.println("\n");
             list.print();
-            System.out.println("\n");
-            System.out.println(list.size());
-            System.out.println("\nNunca fui triste");
+            System.out.print("\n");
+            System.out.println("Tamanho final da lista: \0" + list.size());
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,5 +42,6 @@ public class Appt {
         Instant end = Instant.now();
         Duration timeElapsed = Duration.between(start, end);
         System.out.println("Tempo de execução: " + timeElapsed.toMillis() + " milissegundos");
+        System.out.println("\nNão fui genial, prof?");
     }
 }
